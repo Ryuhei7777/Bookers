@@ -1,7 +1,30 @@
 <h1>Books</h1>
+<% @books.each do |book| %>
 
-<p>Title</p>
-<>
+<table>
+    <div class="label">
+        <h3>Title</h3>
+        <h3>Body</h3>
+    </div>
+    
+    <div class="book_title">
+        <span><%= book.title %></span>
+    </div>
+    
+    <div class="book_body">
+        <span><%= book.body %></span>
+    </div>
+        
+    <div class="Show_link">
+        <p><%= link_to "Show", "/books/show" %></p>
+    </div>
+    
+    <div class="Edit_link">
+        <p><%= link_to "Edit", "books/edit" %><p>
+    </div>
+</table>
+
+<% end %>
 
 <h1>New book</h1>
 <%= form_with model: Book.new do |f| %>
