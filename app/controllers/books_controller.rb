@@ -9,13 +9,18 @@ class BooksController < ApplicationController
     @book=Book.new
   end
 
- def create
+  def create
     # １.&2. データを受け取り新規登録するためのインスタンス作成
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    book.save
+    if @book.save
     # 4.インデックス画面へリダイレクト
-    redirect_to '/books/show'
+      flash[:notice] = "Book was successfully created."
+      redirect_to show_book_path(@book.id)
+    else
+      @books=Book.all
+      render :index
+    end
   end
 
   def show
@@ -28,8 +33,13 @@ class BooksController < ApplicationController
 
   def update
     book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to show_book_path(book.id)
+    if book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
+      redirect_to show_book_path(book.id)
+    else
+      @book=Book.find(params[:id])
+      render :edit
+    end
   end
 
   def destroy
@@ -37,7 +47,7 @@ class BooksController < ApplicationController
     book=Book.find(params[:id])
     #ﾃﾞｰﾀの削除
     book.destroy
-    # 投稿一覧画面へリダイレクト  
+    # 投稿一覧画面へリダイレクト
     redirect_to '/books'
   end
 
