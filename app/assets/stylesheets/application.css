@@ -49,6 +49,7 @@ p{
 
 span{
   font-weight: bold;
+  padding-right:  10px;
 }
 
 th{
@@ -74,4 +75,21 @@ td{
 
 .show,.edit,.destory{
   padding-right: 5px;
+}
+
+.show_title,.show_body{
+  display: flex;
+  margin: 30px;
+}
+
+.show_edit,.show_back,.show_show{
+  font-size: 12px;
+}
+
+.edit_title{
+  font-size: 24px;
+}
+
+.edit_Title,.edit_Body{
+  margin-bottom: 10px;
 }

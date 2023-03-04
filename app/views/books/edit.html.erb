@@ -1,2 +1,21 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<h1 class="edit_title">Editing Book</h1>
+
+<%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
+
+<div class="edit_Title">
+  <h3>Title</h3>
+  <%= f.text_field :title %>
+</div>
+
+<div class="edit_Body">
+  <h3>Body</h3>
+  <%= f.text_area :body %>
+</div>
+
+<div><%= f.submit 'Update Book' %></div>
+
+<% end %>
+
+<span class="show_show"><%= link_to "Show", show_book_path(@book.id) %></span>
+<span>|</span>
+<span class="show_back"><%= link_to "Back", "/books" %></span>
