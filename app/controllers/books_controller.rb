@@ -16,7 +16,7 @@ class BooksController < ApplicationController
     if @book.save
     # 4.インデックス画面へリダイレクト
       flash[:notice] = "Book was successfully created."
-      redirect_to show_book_path(@book.id)
+      redirect_to book_path(@book.id)
     else
       @books=Book.all
       render :index
@@ -35,7 +35,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
       flash[:notice] = "Book was successfully updated."
-      redirect_to show_book_path(@book.id)
+      redirect_to book_path(@book.id)
     else
       render :edit
     end
@@ -47,7 +47,8 @@ class BooksController < ApplicationController
     #ﾃﾞｰﾀの削除
     book.destroy
     # 投稿一覧画面へリダイレクト
-    redirect_to '/books'
+    flash[:notice] = "Book was successfully destroyed."
+    redirect_to books_path
   end
 
  private
